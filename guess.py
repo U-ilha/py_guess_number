@@ -1,31 +1,41 @@
+import random
+
 chance = 3
-lot = 5
-difficult_1 = "1 - baby"
-difficult_2 = "2 - human"
-difficult_3 = "3 - machine"
-difficult_4 = "4 - god among us"
+num = 0
+difficult_1 = "1 - baby (1 to 3)"
+difficult_2 = "2 - human (1 to 10)"
+difficult_3 = "3 - machine (1 to 25)"
+difficult_4 = "4 - god among us (1 to 100)"
 
 
-def mode(difficult):
-    if difficult == "1":
-        print("You have choose the difficult " + difficult_1 + ". Let's Start!")
-    elif difficult == "2":
-        print("You have choose the difficult " + difficult_2 + ". Let's Start!")
-    elif difficult == "3":
-        print("You have choose the difficult " + difficult_3 + ". Let's Start!")
-    elif difficult == "4":
-        print("You have choose the difficult " + difficult_4 + ". Let's Start!")
+def mode(difficult, num):
+    if difficult == 1:
+        print("You have choose the difficult {}. Let's start!".format(difficult_1))
+        num = random.randrange(1, 3)
+        return num
+    elif difficult == 2:
+        print("You have choose the difficult {}. Let's start!".format(difficult_2))
+        num = random.randrange(1, 10)
+        return num
+    elif difficult == 3:
+        print("You have choose the difficult {}. Let's start!".format(difficult_3))
+        num = random.randrange(1, 25)
+        return num
+    elif difficult == 4:
+        print("You have choose the difficult {}. Let's start!".format(difficult_4))
+        num = random.randrange(1, 100)
+        return num
     else:
         print("Sorry! Invalid option!")
 
 
-def guess(chance, attempt, lot):
-    if attempt != lot:
-        print("Wrong, you have only more " + str(chance) + " chance")
+def guess(chance, attempt, num):
+    if attempt == num:
+        print("YOU WIN!!!")
+    else:
+        print("Wrong, you have only more {} chance".format(chance))
         chance = chance - 1
         return chance
-    else:
-        print("YOU WIN!!!")
 
 
 print("List of difficult")
@@ -34,10 +44,12 @@ print(difficult_2)
 print(difficult_3)
 print(difficult_4)
 
-difficult = input("Type the number of your difficult: ")
+difficult = int(input("Type the number of your difficult: "))
 
-mode(difficult)
+num = mode(difficult, num)
 
-attempt = input("Choose a number between 1 and 10: ")
+print(num)
 
-guess(chance, attempt, lot)
+attempt = int(input("Choose a number: "))
+
+guess(chance, attempt, num)
